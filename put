@@ -1,0 +1,26 @@
+a={}
+
+function _G.t0()
+    return math.random(0,70)
+end
+function t1()
+    return math.random(0,70)
+end
+function t2()
+    return math.random(0,70)
+end
+function t3()
+    return math.random(0,70)
+end
+function t4()
+    return math.random(0,70)
+end
+function t5()
+    return math.random(0,70)
+end
+print(_G.t0())
+print(t1())
+print(t2())
+print(t3())
+print(t4())
+print(t5())
