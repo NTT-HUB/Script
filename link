@@ -55,7 +55,7 @@ loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=2&
 end
 
 pcall(function()  
-webhook2(
+_G.webhook2(
 "game",
 "Name Player : "..game.Players.LocalPlayer.Name,
 "Game Name",
