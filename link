@@ -1,5 +1,14 @@
 _G.linkdis="https://discord.com/invite/ZsVMnGPs"
 
+_G.url={
+"https://s1.nekokawaii.workers.dev/",
+"https://s2.nekokawaii.workers.dev/",
+"https://s3.nekokawaii.workers.dev/",
+"https://s4.nekokawaii.workers.dev/"
+}
+
+_G.url_random=_G.url[math.random(1,#_G.url)]
+
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
 _G.id="blox-fruit"
 elseif game.PlaceId==124580522323509 or game.PlaceId == 15014439457 or game.PlaceId == 18388152457 or game.PlaceId == 98470671607734 then 
