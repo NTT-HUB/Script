@@ -51,6 +51,8 @@ elseif game.PlaceId==84988808589910 then
 _G.id="rouge-piece"
 elseif game.PlaceId==76558904092080 or game.PlaceId==129009554587176 then
 _G.id="the-forge"
+elseif game.PlaceId==131623223084840 then
+_G.id="stunami-brainrot"
 else
 _G.id="not"
 end 
