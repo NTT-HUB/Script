@@ -55,6 +55,8 @@ elseif game.PlaceId==131623223084840 then
 _G.id="stunami-brainrot"
 elseif game.PlaceId==3978370137 then
 _G.id="grand-piece-online"
+elseif game.PlaceId==77747658251236 or game.PlaceId==75159314259063 then
+_G.id="sailor-piece"
 else
 _G.id="not"
 end end
@@ -86,7 +88,7 @@ _G.id
 )
 end)
 
-
+pcall(function()  
 for _,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do    
 v:Disable()
-end 
+end end)
