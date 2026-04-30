@@ -55,7 +55,7 @@ elseif game.PlaceId==131623223084840 then
 _G.id="stunami-brainrot"
 elseif game.PlaceId==3978370137 then
 _G.id="grand-piece-online"
-elseif game.PlaceId == 130167267952199 or game.PlaceId==138368689293913 or game.PlaceId==96767841099256 or game.PlaceId==77747658251236 or game.PlaceId==75159314259063 or game.PlaceId==99684056491472 or game.PlaceId==123955125827131 then
+elseif game.PlaceId == 98826438856089 or game.PlaceId == 130167267952199 or game.PlaceId==138368689293913 or game.PlaceId==96767841099256 or game.PlaceId==77747658251236 or game.PlaceId==75159314259063 or game.PlaceId==99684056491472 or game.PlaceId==123955125827131 then
 _G.id="sailor-piece"
 else
 _G.id="not"
