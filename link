@@ -8,6 +8,7 @@ _G.url={
 "https://s4.nekokawaii.workers.dev/"
 }
 
+_G.index_key=="_"
 _G.url_random=_G.url[math.random(1,#_G.url)]
 if _G.id == nil then
 if game.PlaceId==79091703265657 or game.PlaceId==85211729168715 or game.PlaceId==100117331123089 or game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
