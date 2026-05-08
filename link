@@ -60,6 +60,8 @@ elseif game.PlaceId == 98826438856089 or game.PlaceId == 130167267952199 or game
 _G.id="sailor-piece"
 elseif game.PlaceId == 89469502395769 then
 _G.id="kick-a-lucky-block"
+elseif game.PlaceId == 142823291 then
+_G.id="mm2"
 else
 _G.id="not"
 end end
