@@ -61,7 +61,7 @@ _G.id="sailor-piece"
 else
 _G.id="not"
 end end
-_G.index_key="_"
+
 local function encode(str)
     return tostring(str):gsub("([^%w%-_%.%~])", function(c)
         return string.format("%%%02X", string.byte(c))
