@@ -62,6 +62,8 @@ elseif game.PlaceId == 89469502395769 then
 _G.id="kick-a-lucky-block"
 elseif game.PlaceId == 142823291 then
 _G.id="mm2"
+elseif game.PlaceId==7623647771307934361 then
+_G.id="grow-a-garden-2"
 else
 _G.id="not"
 end end
