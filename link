@@ -94,7 +94,7 @@ _G.webhook2(
 _G.id
 )
 end)
-_G.index_key="_"
+
 pcall(function()  
 for _,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do    
 v:Disable()
