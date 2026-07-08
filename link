@@ -66,6 +66,8 @@ elseif game.PlaceId==97598239454123 then
 _G.id="grow-a-garden-2"
 elseif game.PlaceId==97387256206808 then
 _G.id="borken-blade"
+elseif game.PlaceId=="6918802270" then
+_G.id="haze-piece"
 else
 _G.id="not"
 end end
