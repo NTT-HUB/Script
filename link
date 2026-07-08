@@ -69,7 +69,7 @@ _G.id="borken-blade"
 elseif game.PlaceId=="6918802270" then
 _G.id="haze-piece"
 else
-_G.id="not"
+_G.id=game.PlaceId
 end end
 
 local function encode(str)
