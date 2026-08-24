@@ -68,6 +68,8 @@ elseif game.PlaceId==97387256206808 then
 _G.id="borken-blade"
 elseif game.PlaceId==6918802270 or game.PlaceId == 14979402479 or game.PlaceId == 99664616626491 then
 _G.id="haze-piece"
+elseif game.PlaceId==74102906764176 then
+_G.id="greedy-growers"
 else
 _G.id=game.PlaceId
 end end
