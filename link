@@ -22,6 +22,8 @@ elseif game.PlaceId == 101116417626116 or game.PlaceId == 5215921305 or game.Pla
 _G.id="zombie-uprising"
 elseif game.PlaceId == 10260193230 then -- meme sea
 _G.id="meme-sea"
+elseif game.PlaceId == 94939256104840 then
+_G.id="chicken-fight"
 elseif game.PlaceId==114964886884368 or game.PlaceId == 11445923563 or game.PlaceId==14862674911 or game.PlaceId == 13155198714 or game.PlaceId==17333805250 then
 _G.id="one-fruit"
 elseif game.PlaceId==537413528 then
