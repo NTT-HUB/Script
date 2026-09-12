@@ -12,6 +12,8 @@ _G.url_random=_G.url[math.random(1,#_G.url)]
 if _G.id == nil then
 if game.PlaceId==79091703265657 or game.PlaceId==85211729168715 or game.PlaceId==100117331123089 or game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
 _G.id="blox-fruit"
+elseif game.PlaceId == 86022723355936 then
+_G.id="forsaken"
 elseif game.PlaceId == 107778070777162 then
 _G.id="steal-an-egg"
 elseif game.PlaceId == 113290951185459 then
