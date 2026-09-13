@@ -12,7 +12,7 @@ _G.url_random=_G.url[math.random(1,#_G.url)]
 if _G.id == nil then
 if game.PlaceId==79091703265657 or game.PlaceId==85211729168715 or game.PlaceId==100117331123089 or game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then 
 _G.id="blox-fruit"
-elseif game.PlaceId == 86022723355936 then
+elseif game.PlaceId == 83645629621104 then
 _G.id="forsaken"
 elseif game.PlaceId == 107778070777162 then
 _G.id="steal-an-egg"
@@ -35,6 +35,84 @@ _G.id="king-legacy"
 elseif game.PlaceId== 18901165922 then
 _G.id="pet-go"
 elseif game.PlaceId== 16732694052 then
+_G.id="fisch"
+elseif game.PlaceId== 126509999114328 or game.PlaceId==79546208627805 then
+_G.id="99-night-in-the-forest"
+elseif game.PlaceId==126884695634066 then
+_G.id="grow-a-graden"
+elseif game.PlaceId==137595477352660 then
+_G.id="one-piece-mythical"
+elseif game.PlaceId==18337464872 then
+_G.id="weak-legacy-2"
+elseif game.PlaceId==108907046166010 or game.PlaceId==76349519705053 then
+_G.id="99-night-in-the-wild-west" 
+elseif game.PlaceId==12900046592 or game.PlaceId==12886143095 then
+_G.id="anime-last-stand"
+elseif game.PlaceId==17400753636 or game.PlaceId==17282336195 then
+_G.id="anime-guardian"
+elseif game.PlaceId==16146832113 or game.PlaceId==16277809958 then
+_G.id="anime-vanguard"
+elseif game.PlaceId==13775256536 or game.PlaceId==14082129854 then
+_G.id="toilet-tower-defense"
+elseif game.PlaceId==662417684 then
+_G.id="lucky-block"
+elseif game.PlaceId==84988808589910 then
+_G.id="rouge-piece"
+elseif game.PlaceId==76558904092080 or game.PlaceId==129009554587176 then
+_G.id="the-forge"
+elseif game.PlaceId==131623223084840 then
+_G.id="stunami-brainrot"
+elseif game.PlaceId==3978370137 then
+_G.id="grand-piece-online"
+elseif game.PlaceId == 75982168454032 or game.PlaceId == 98826438856089 or game.PlaceId == 130167267952199 or game.PlaceId==138368689293913 or game.PlaceId==96767841099256 or game.PlaceId==77747658251236 or game.PlaceId==75159314259063 or game.PlaceId==99684056491472 or game.PlaceId==123955125827131 then
+_G.id="sailor-piece"
+elseif game.PlaceId == 89469502395769 then
+_G.id="kick-a-lucky-block"
+elseif game.PlaceId == 142823291 then
+_G.id="mm2"
+elseif game.PlaceId==97598239454123 then
+_G.id="grow-a-garden-2"
+elseif game.PlaceId==97387256206808 then
+_G.id="borken-blade"
+elseif game.PlaceId==6918802270 or game.PlaceId == 14979402479 or game.PlaceId == 99664616626491 then
+_G.id="haze-piece"
+elseif game.PlaceId==74102906764176 then
+_G.id="greedy-growers"
+else
+_G.id=game.PlaceId
+end end
+
+local function encode(str)
+    return tostring(str):gsub("([^%w%-_%.%~])", function(c)
+        return string.format("%%%02X", string.byte(c))
+    end)
+end
+
+function _G.webhook1(webhook,title,prlc,jobid)
+    loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=1&webhook="..encode(webhook).."&title="..encode(title).."&prlc="..encode(prlc).."&jobid="..encode(jobid)))()  
+end
+
+function _G.webhook2(webhook,title,name,content)
+    loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=2&webhook="..encode(webhook).."&title="..encode(title).."&name="..encode(name).."&content="..encode(content)))()  
+end
+
+function _G.webhook3(webhook,title,smalltitle,content,prlc,jobid)
+    loadstring(game:HttpGet("https://webhook-api.nekokawaii.workers.dev/api/?type=3&webhook="..encode(webhook).."&title="..encode(title).."&smalltitle="..encode(smalltitle).."&content="..encode(content).."&prlc="..encode(prlc).."&jobid="..encode(jobid)))()  
+end
+
+pcall(function()  
+_G.webhook2(
+"game",
+"Name Player : "..game.Players.LocalPlayer.Name,
+"Game Name",
+_G.id
+)
+end)
+
+pcall(function()  
+for _,v in pairs(getconnections(game.Players.LocalPlayer.Idled)) do    
+v:Disable()
+end end)elseif game.PlaceId== 16732694052 then
 _G.id="fisch"
 elseif game.PlaceId== 126509999114328 or game.PlaceId==79546208627805 then
 _G.id="99-night-in-the-forest"
