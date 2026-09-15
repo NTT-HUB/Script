@@ -1,0 +1,154 @@
+AI edits open as a compare tab before Apply Changes.
+
+You:
+code cho tui mauf trawngs dden
+
+DeepSeek Private:
+Sending through the logged-in DeepSeek private session API...
+
+DeepSeek:
+<NTF_FILE>
+-- Simple Roblox Menu UI (White & Black Theme)
+-- Creates a ScreenGui with a styled Frame and two Buttons
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Create ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "SimpleMenu"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = playerGui
+
+-- Create main frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 320, 0, 240)
+frame.Position = UDim2.new(0.5, -160, 0.5, -120)
+frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)     -- White background
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+-- Rounded corners for the frame
+local frameCorner = Instance.new("UICorner")
+frameCorner.CornerRadius = UDim.new(0, 12)
+frameCorner.Parent = frame
+
+-- Frame stroke (outline)
+local frameStroke = Instance.new("UIStroke")
+frameStroke.Thickness = 2
+frameStroke.Color = Color3.fromRGB(0, 0, 0)              -- Black outline
+frameStroke.Transparency = 0.2
+frameStroke.Parent = frame
+
+-- Gradient background for the frame (subtle white gradient)
+local frameGradient = Instance.new("UIGradient")
+frameGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(220, 220, 220))
+}
+frameGradient.Rotation = 90
+frameGradient.Parent = frame
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 48)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "My Roblox Menu"
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 28
+title.TextColor3 = Color3.fromRGB(0, 0, 0)              -- Black text
+title.TextXAlignment = Enum.TextXAlignment.Center
+title.TextYAlignment = Enum.TextYAlignment.Center
+title.Parent = frame
+
+-- Helper function to create stylish buttons
+local function createButton(name, yPos, callback)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(1, -40, 0, 48)
+    btn.Position = UDim2.new(0, 20, 0, yPos)
+    btn.BackgroundTransparency = 0
+    btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)       -- Black button background
+    btn.Text = name
+    btn.Font = Enum.Font.SourceSans
+    btn.TextSize = 22
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)       -- White text
+    btn.Parent = frame
+
+    -- Rounded corners for button
+    local btnCorner = Instance.new("UICorner")
+    btnCorner.CornerRadius = UDim.new(0, 8)
+    btnCorner.Parent = btn
+
+    -- Stroke for button
+    local btnStroke = Instance.new("UIStroke")
+    btnStroke.Thickness = 1
+    btnStroke.Color = Color3.fromRGB(255, 255, 255)      -- White outline
+    btnStroke.Transparency = 0.6
+    btnStroke.Parent = btn
+
+    -- Hover effect (actually animates the button)
+    btn.MouseEnter:Connect(function()
+        btn:TweenSize(
+            UDim2.new(1, -32, 0, 48),
+            Enum.EasingDirection.Out,
+            Enum.EasingStyle.Quint,
+            0.15,
+            true
+        )
+        btn:TweenPosition(
+            UDim2.new(0, 16, 0, yPos),
+            Enum.EasingDirection.Out,
+            Enum.EasingStyle.Quint,
+            0.15,
+            true
+        )
+        btn.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Dark gray on hover
+    end)
+
+    btn.MouseLeave:Connect(function()
+        btn:TweenSize(
+            UDim2.new(1, -40, 0, 48),
+            Enum.EasingDirection.Out,
+            Enum.EasingStyle.Quint,
+            0.15,
+            true
+        )
+        btn:TweenPosition(
+            UDim2.new(0, 20, 0, yPos),
+            Enum.EasingDirection.Out,
+            Enum.EasingStyle.Quint,
+            0.15,
+            true
+        )
+        btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)     -- Return to black
+    end)
+
+    btn.MouseButton1Click:Connect(callback)
+end
+
+-- Example buttons
+createButton("Say Hello", 68, function()
+    print("Hello from the menu!")
+    -- Add any custom action here (e.g., give a tool, teleport, etc.)
+end)
+
+createButton("Close Menu", 128, function()
+    screenGui:Destroy()
+end)
+</NTF_FILE>
+
+Đây là theme **trắng đen** cho menu nha:
+
+- **Frame chính**: nền trắng, viền đen, gradient trắng nhẹ
+- **Title**: chữ đen trên nền trắng
+- **Nút**: nền đen, chữ trắng, viền trắng mờ
+- **Hover**: nút chuyển sang xám đậm (50,50,50) và phóng to nhẹ cho đẹp
+
+Bạn muốn tui đổi gì nữa không? Ví dụ:
+- Thêm nút **kéo menu** (drag)
+- Thêm chức năng **teleport / speed / fly**
+- Phím tắt **mở/đóng menu**
+- Đổi sang theme **neon / tím / xanh**
+
