@@ -1,154 +1,259 @@
-AI edits open as a compare tab before Apply Changes.
-
-You:
-code cho tui mauf trawngs dden
-
-DeepSeek Private:
-Sending through the logged-in DeepSeek private session API...
-
 DeepSeek:
-<NTF_FILE>
--- Simple Roblox Menu UI (White & Black Theme)
--- Creates a ScreenGui with a styled Frame and two Buttons
+<F_FILE>
+-- ⚡ Roblox Menu Script (Speed + Jump + Đẹp)
+-- Dùng được như LocalScript HOẶC chạy qua executor (Synapse, Krnl, v.v.)
+-- Đặt ở: StarterPlayer > StarterPlayerScripts (LocalScript)
 
+--// SERVICES
 local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+--// PLAYER
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
--- Create ScreenGui
+--// XÓA MENU CŨ NẾU CÓ
+local old = playerGui:FindFirstChild("SimpleMenu")
+if old then old:Destroy() end
+
+--// TẠO SCREENGUI
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "SimpleMenu"
 screenGui.ResetOnSpawn = false
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screenGui.IgnoreGuiInset = true
 screenGui.Parent = playerGui
 
--- Create main frame
+--// MAIN FRAME
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 320, 0, 240)
-frame.Position = UDim2.new(0.5, -160, 0.5, -120)
-frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)     -- White background
+frame.Name = "Main"
+frame.Size = UDim2.new(0, 340, 0, 320)
+frame.Position = UDim2.new(0.5, -170, 0.5, -160)
+frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 frame.BorderSizePixel = 0
+frame.Active = true
 frame.Parent = screenGui
 
--- Rounded corners for the frame
 local frameCorner = Instance.new("UICorner")
-frameCorner.CornerRadius = UDim.new(0, 12)
+frameCorner.CornerRadius = UDim.new(0, 14)
 frameCorner.Parent = frame
 
--- Frame stroke (outline)
 local frameStroke = Instance.new("UIStroke")
 frameStroke.Thickness = 2
-frameStroke.Color = Color3.fromRGB(0, 0, 0)              -- Black outline
-frameStroke.Transparency = 0.2
+frameStroke.Color = Color3.fromRGB(255, 255, 255)
+frameStroke.Transparency = 0.7
 frameStroke.Parent = frame
 
--- Gradient background for the frame (subtle white gradient)
 local frameGradient = Instance.new("UIGradient")
 frameGradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(220, 220, 220))
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(35, 35, 35)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(10, 10, 10))
 }
 frameGradient.Rotation = 90
 frameGradient.Parent = frame
 
--- Title
+--// TITLE BAR (kéo menu)
+local titleBar = Instance.new("Frame")
+titleBar.Name = "TitleBar"
+titleBar.Size = UDim2.new(1, 0, 0, 48)
+titleBar.Position = UDim2.new(0, 0, 0, 0)
+titleBar.BackgroundTransparency = 1
+titleBar.Parent = frame
+
 local title = Instance.new("TextLabel")
-title.Size = UDim2.new(1, 0, 0, 48)
-title.Position = UDim2.new(0, 0, 0, 0)
+title.Size = UDim2.new(1, -60, 1, 0)
+title.Position = UDim2.new(0, 20, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "My Roblox Menu"
-title.Font = Enum.Font.SourceSansBold
-title.TextSize = 28
-title.TextColor3 = Color3.fromRGB(0, 0, 0)              -- Black text
-title.TextXAlignment = Enum.TextXAlignment.Center
+title.Text = "⚡ My Roblox Menu"
+title.Font = Enum.Font.GothamBold
+title.TextSize = 22
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextXAlignment = Enum.TextXAlignment.Left
 title.TextYAlignment = Enum.TextYAlignment.Center
-title.Parent = frame
+title.Parent = titleBar
 
--- Helper function to create stylish buttons
-local function createButton(name, yPos, callback)
-    local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(1, -40, 0, 48)
-    btn.Position = UDim2.new(0, 20, 0, yPos)
-    btn.BackgroundTransparency = 0
-    btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)       -- Black button background
-    btn.Text = name
-    btn.Font = Enum.Font.SourceSans
-    btn.TextSize = 22
-    btn.TextColor3 = Color3.fromRGB(255, 255, 255)       -- White text
-    btn.Parent = frame
+--// NÚT ĐÓNG (X)
+local closeBtn = Instance.new("TextButton")
+closeBtn.Size = UDim2.new(0, 32, 0, 32)
+closeBtn.Position = UDim2.new(1, -42, 0, 8)
+closeBtn.BackgroundColor3 = Color3.fromRGB(230, 60, 60)
+closeBtn.Text = "✕"
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.TextSize = 16
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.BorderSizePixel = 0
+closeBtn.AutoButtonColor = false
+closeBtn.Parent = titleBar
 
-    -- Rounded corners for button
-    local btnCorner = Instance.new("UICorner")
-    btnCorner.CornerRadius = UDim.new(0, 8)
-    btnCorner.Parent = btn
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(0, 8)
+closeCorner.Parent = closeBtn
 
-    -- Stroke for button
-    local btnStroke = Instance.new("UIStroke")
-    btnStroke.Thickness = 1
-    btnStroke.Color = Color3.fromRGB(255, 255, 255)      -- White outline
-    btnStroke.Transparency = 0.6
-    btnStroke.Parent = btn
+closeBtn.MouseEnter:Connect(function()
+    closeBtn.BackgroundColor3 = Color3.fromRGB(255, 90, 90)
+end)
+closeBtn.MouseLeave:Connect(function()
+    closeBtn.BackgroundColor3 = Color3.fromRGB(230, 60, 60)
+end)
+closeBtn.MouseButton1Click:Connect(function()
+    screenGui:Destroy()
+end)
 
-    -- Hover effect (actually animates the button)
-    btn.MouseEnter:Connect(function()
-        btn:TweenSize(
-            UDim2.new(1, -32, 0, 48),
-            Enum.EasingDirection.Out,
-            Enum.EasingStyle.Quint,
-            0.15,
-            true
-        )
-        btn:TweenPosition(
-            UDim2.new(0, 16, 0, yPos),
-            Enum.EasingDirection.Out,
-            Enum.EasingStyle.Quint,
-            0.15,
-            true
-        )
-        btn.BackgroundColor3 = Color3.fromRGB(50, 50, 50) -- Dark gray on hover
+--// ĐƯỜNG KẺ
+local divider = Instance.new("Frame")
+divider.Size = UDim2.new(1, -32, 0, 1)
+divider.Position = UDim2.new(0, 16, 0, 52)
+divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+divider.BackgroundTransparency = 0.8
+divider.BorderSizePixel = 0
+divider.Parent = frame
+
+--// KÉO MENU
+do
+    local dragging = false
+    local dragStart, startPos
+
+    titleBar.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1
+        or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = frame.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
     end)
 
+    UserInputService.InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement
+        or input.UserInputType == Enum.UserInputType.Touch) then
+            local delta = input.Position - dragStart
+            frame.Position = UDim2.new(
+                startPos.X.Scale, startPos.X.Offset + delta.X,
+                startPos.Y.Scale, startPos.Y.Offset + delta.Y
+            )
+        end
+    end)
+end
+
+--// HÀM TẠO NÚT
+local function createButton(name, yPos, callback)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(1, -40, 0, 46)
+    btn.Position = UDim2.new(0, 20, 0, yPos)
+    btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    btn.Text = name
+    btn.Font = Enum.Font.GothamMedium
+    btn.TextSize = 18
+    btn.TextColor3 = Color3.fromRGB(0, 0, 0)
+    btn.BorderSizePixel = 0
+    btn.AutoButtonColor = false
+    btn.Parent = frame
+
+    local btnCorner = Instance.new("UICorner")
+    btnCorner.CornerRadius = UDim.new(0, 10)
+    btnCorner.Parent = btn
+
+    local btnStroke = Instance.new("UIStroke")
+    btnStroke.Thickness = 1
+    btnStroke.Color = Color3.fromRGB(255, 255, 255)
+    btnStroke.Transparency = 0.75
+    btnStroke.Parent = btn
+
+    btn.MouseEnter:Connect(function()
+        btn.BackgroundColor3 = Color3.fromRGB(210, 210, 210)
+    end)
     btn.MouseLeave:Connect(function()
-        btn:TweenSize(
-            UDim2.new(1, -40, 0, 48),
-            Enum.EasingDirection.Out,
-            Enum.EasingStyle.Quint,
-            0.15,
-            true
-        )
-        btn:TweenPosition(
-            UDim2.new(0, 20, 0, yPos),
-            Enum.EasingDirection.Out,
-            Enum.EasingStyle.Quint,
-            0.15,
-            true
-        )
-        btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)     -- Return to black
+        btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     end)
 
     btn.MouseButton1Click:Connect(callback)
+    return btn
 end
 
--- Example buttons
-createButton("Say Hello", 68, function()
-    print("Hello from the menu!")
-    -- Add any custom action here (e.g., give a tool, teleport, etc.)
+--// LẤY HUMANOID
+local function getHumanoid()
+    local char = player.Character
+    if not char then return nil end
+    return char:FindFirstChildOfClass("Humanoid")
+end
+
+--// BIẾN TRẠNG THÁI
+local DEFAULT_WALK = 16
+local DEFAULT_JUMP = 50
+local speedOn = false
+local jumpOn = false
+
+--// NÚT SPEED
+local speedBtn = createButton("🏃 Speed: OFF", 68, function()
+    speedOn = not speedOn
+    local hum = getHumanoid()
+    if hum then
+        hum.WalkSpeed = speedOn and 60 or DEFAULT_WALK
+    end
+    speedBtn.Text = speedOn and "🏃 Speed: ON (60)" or "🏃 Speed: OFF"
+    speedBtn.BackgroundColor3 = speedOn and Color3.fromRGB(120, 220, 120) or Color3.fromRGB(255, 255, 255)
 end)
 
-createButton("Close Menu", 128, function()
-    screenGui:Destroy()
+--// NÚT JUMP
+local jumpBtn = createButton("🦘 Jump: OFF", 124, function()
+    jumpOn = not jumpOn
+    local hum = getHumanoid()
+    if hum then
+        hum.UseJumpPower = true
+        hum.JumpPower = jumpOn and 120 or DEFAULT_JUMP
+    end
+    jumpBtn.Text = jumpOn and "🦘 Jump: ON (120)" or "🦘 Jump: OFF"
+    jumpBtn.BackgroundColor3 = jumpOn and Color3.fromRGB(120, 220, 120) or Color3.fromRGB(255, 255, 255)
+end)
+
+--// ÁP DỤNG LẠI SAU KHI RESPAWN
+local function onCharacterAdded(char)
+    task.wait(0.5)
+    local hum = char:FindFirstChildOfClass("Humanoid")
+    if hum then
+        if speedOn then hum.WalkSpeed = 60 end
+        if jumpOn then
+            hum.UseJumpPower = true
+            hum.JumpPower = 120
+        end
+    end
+end
+
+player.CharacterAdded:Connect(onCharacterAdded)
+if player.Character then onCharacterAdded(player.Character) end
+
+--// NÚT SAY HELLO
+createButton("👋 Say Hello", 180, function()
+    print("Hello from the menu!")
+end)
+
+--// NÚT RESET
+createButton("♻️ Reset Speed/Jump", 236, function()
+    local hum = getHumanoid()
+    if hum then
+        hum.WalkSpeed = DEFAULT_WALK
+        hum.UseJumpPower = true
+        hum.JumpPower = DEFAULT_JUMP
+    end
+    speedOn = false
+    jumpOn = false
+    speedBtn.Text = "🏃 Speed: OFF"
+    speedBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    jumpBtn.Text = "🦘 Jump: OFF"
+    jumpBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+end)
+
+--// PHÍM TẮT: RIGHT SHIFT ĐỂ ẨN/HIỆN MENU
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if input.KeyCode == Enum.KeyCode.RightShift then
+        frame.Visible = not frame.Visible
+    end
 end)
 </NTF_FILE>
-
-Đây là theme **trắng đen** cho menu nha:
-
-- **Frame chính**: nền trắng, viền đen, gradient trắng nhẹ
-- **Title**: chữ đen trên nền trắng
-- **Nút**: nền đen, chữ trắng, viền trắng mờ
-- **Hover**: nút chuyển sang xám đậm (50,50,50) và phóng to nhẹ cho đẹp
-
-Bạn muốn tui đổi gì nữa không? Ví dụ:
-- Thêm nút **kéo menu** (drag)
-- Thêm chức năng **teleport / speed / fly**
-- Phím tắt **mở/đóng menu**
-- Đổi sang theme **neon / tím / xanh**
-
