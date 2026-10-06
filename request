@@ -1,1 +1,2 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/NTTTTTTTT/upload/refs/heads/main/content/6ada41709b3244b9ab33f0e82a4e66e9_obf.lua",true))()
+-- Main Script | Script Premium Need Key To Loader
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NTTTTTTTT/upload/refs/heads/main/content/83a91fefaf3746598abdae508675fc50_obf.lua",true))()
