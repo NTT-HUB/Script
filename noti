@@ -93,7 +93,7 @@ desc.Parent = main
 -- Items
 local items = {
     "Sk fin: 230₫/1",
-    "Hydra tail: 1k/1",
+    "Hydra tail: 1.7k/1",
     "Storage fruit: 50/1"
 }
 
