@@ -93,7 +93,6 @@ desc.Parent = main
 -- Items
 local items = {
     "Sk fin: 250₫/1",
-    "Storage fruit: 50/1"
 }
 
 for i, text in ipairs(items) do
