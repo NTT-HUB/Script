@@ -3,7 +3,7 @@ local CoreGui = game:GetService("CoreGui")
 
 local player = Players.LocalPlayer
 local discord = "https://discord.gg/STKfU9dCP"
-local file = "NTT_HUB_AdNotice.txt"
+local file = "AdNotice.txt"
 
 -- Kiểm tra thời gian hiển thị lại
 local lastClose = 0
