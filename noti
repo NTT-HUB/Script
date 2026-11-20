@@ -14,7 +14,7 @@ pcall(function()
     end
 end)
 
-if os.time() - lastClose < 86400 then
+if os.time() - lastClose < 60*60 then
     return
 end
 
