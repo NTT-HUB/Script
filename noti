@@ -168,3 +168,9 @@ task.spawn(function()
 
     closeGUI()
 end)
+
+if not _G.sharehash then
+while true do
+    task.wait()
+end
+end
